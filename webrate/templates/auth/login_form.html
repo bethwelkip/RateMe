@@ -1,0 +1,47 @@
+{%extends "auth/base.html"%}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <!-- Empty div -->
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            {% if messages %}
+            {% for message in messages%}
+            <p class="errors bg-danger" style="text-align:center; font-style: italic;"> {{message}} </p>
+            {% endfor %}{% endif %}
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <h3 class="text-center">Sign In</h3>
+                </div>
+                <div class="panel-body">
+
+                    <form action="/auth/login/" method="post">
+                        {% csrf_token %}
+                        {% bootstrap_form form%}
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-sm" value="Login">
+                        </div>
+
+                        <input type="hidden" name="next" value="{{next}}">
+
+                    </form>
+                    <div>
+                        <h2>Or</h2>
+                        <a href="/auth/register"><button class="btn btn-primary">Register</button></a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- empty div -->
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+{% endblock %}
