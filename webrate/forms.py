@@ -12,7 +12,7 @@ class RegisterForm(forms.Form):
 
 class LoginForm(forms.Form):
     username = forms.CharField()
-    password = forms.CharField()
+    password = forms.PasswordField()
 class UpdateForm(forms.ModelForm):
     class Meta:
         model = User
