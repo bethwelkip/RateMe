@@ -7,6 +7,7 @@ url(r'^$', views.home, name = "home"),
 url(r'profile$', views.view_profile, name = "view_profile"),
 url(r'register/$', views.register, name = 'register'),
 url(r'login/$', views.login, name = 'login'),
+url(r'upload/$', views.upload_project, name = 'upload_project'),
 url(r'search/$', views.search_project, name = 'search_project'),
 url(r'submit_rating/$', views.submit_rating, name = 'submit_rating'),
 ]
