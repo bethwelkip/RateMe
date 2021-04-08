@@ -13,10 +13,22 @@
     <nav class="navbar navbar-justify-content-center navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" style="margin-right: 200px;width: 200px;">
-                <div style="margin-left: 150%;padding-right: 150%;height: 15%;">
+                <div style="margin-left: 100%;height: 15%;">
                     RateMe
                 </div>
             </a>
+            <form class="navbar-form" role="search" action="{% url 'search_project' %}" method="GET"
+                style="margin-right: 10%;">
+
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search Projects" name="project">
+                    <div class="input-group-btn" name="project">
+                        <button type="submit" name='submit' class="btn btn-primary"
+                            style="float: left;margin-bottom: 5%;">Search</button>
+                    </div>
+                </div>
+            </form>
+
             {% if register %}
             <a class="navbar">
                 register
