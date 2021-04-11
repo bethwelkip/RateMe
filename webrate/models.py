@@ -29,3 +29,12 @@ class Project(models.Model):
     ratings = models.ForeignKey(Rating, on_delete = models.CASCADE)
     user = models.ForeignKey(Users,on_delete = models.CASCADE)
 
+    def search_projects(search):
+        projects = Project.objects.all()
+        lis = []
+        for project in projects:
+            if project.description.casefold().__contains__(search.casefold()) or project.title.casefold().__contains__(search):
+                lis.append(project)
+        return lis
+
+
