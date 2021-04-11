@@ -7,70 +7,37 @@
 {% endblock %}
 
 {% block content %}
+{% if message %}
+<h4 style="text-align:center; font-style: bold; color:orange"> {{message}} </h4>
+{% endif %}
 {% if messages %}
 {% for message in messages %}
 <h1 style="text-align:center; font-style: bold; color:orange"> {{message}} </h1>
 {%endfor %}
 {%endif %}
+{% load bootstrap4 %}
+{% load cloudinary %}
 <div class="row">
-    {% load bootstrap4 %}
-    {% load cloudinary %}
     {% for project in projects %}
     <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
-        <div class="jumbotron" id="jumbotron" style="border: 100px;">
-            <div class="view overlay">
-                <a data-toggle="modal" data-target="#myModal{{project.id}}">
-                    <img src="{{project.0.image.url}}" alt="Image" max-height="100%" max-width="100%"
-                        style="max-width:100%">
-                </a>
-                <div>
-                    {{project.0.description}}
-                </div>
-                <div>
-                    {{project.0.url}}
-                </div>
-                <div>
-                    <div class="row">
-                        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
-                            design
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
-                            usability
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
-                            content
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
-                            overall rating
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
-                            # ratings
-                        </div>
+        <div class="container-fluid mx-1">
+            <div class="jumbotron bg-light" id="jumbotron" style="border: 100px;">
+                <div class="card" style="width: 100%;">
+                    <img src="{{project.0.image.url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{project.0.title}}</h5>
+                        <p class="card-text">{{project.0.description}}</p>
                     </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a href="https://{{project.0.url}}" class="card-link">Visit Project
+                                Site</a>
+                        </li>
+                        <li class="list-group-item"> <a href="view_project/{{project.0.id}}" class="card-link">Read More
+                                and
+                                Review</a></li>
+                    </ul>
+                </div>
 
-                    {% for rating in project.1%}
-                    <div class="row">
-                        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
-                            {{rating.design}}
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
-                            {{rating.usability}}
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
-                            {{rating.content}}
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
-                            {{rating.overall}}
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
-                            {{rating.total_raters}}
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-                <div>
-                    <button class='btn btn-info'> <a href="submit_rating" class="btn"> RATE</a> </button>
-                </div>
             </div>
 
         </div>
