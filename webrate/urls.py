@@ -12,4 +12,5 @@ url(r'upload/$', views.upload_project, name = 'upload_project'),
 url(r'search/$', views.search_project, name = 'search_project'),
 url(r'^view_project/submit_rating/(?P<id>\d+)$', views.submit_rating, name = 'submit_rating'),
 url(r'^view_project/(?P<id>\d+)$', views.view_project, name = 'view_project'),
+url(r'^update_profile/$', views.update_profile, name = 'update_profile'),
 ]
