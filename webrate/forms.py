@@ -16,7 +16,13 @@ class LoginForm(forms.Form):
 class UpdateForm(forms.ModelForm):
     class Meta:
         model = Users
+        include = ['HomeTown']
+        exclude = ['contact', 'password']
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
         exclude = []
+
 class RatingForm(forms.Form):
     choices = (
     ("1", 1),
