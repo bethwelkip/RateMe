@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'webrate',
     'bootstrap4',
     'cloudinary',
+    'django_registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
