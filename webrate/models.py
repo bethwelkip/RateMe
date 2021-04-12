@@ -10,9 +10,10 @@ class Contact(models.Model):
 
 class Users(models.Model):
     name = models.CharField(max_length=100)
+    bio = models.TextField(blank = True)
     password = models.CharField(max_length = 1000,blank = True)
-    picture = CloudinaryField('image', null = True, blank = True)
-    contact = models.ForeignKey(Contact, on_delete = models.DO_NOTHING)
+    picture = CloudinaryField('image', blank = True)
+    contact = models.ForeignKey(Contact, blank = True, null = True, on_delete = models.DO_NOTHING)
 
 class Rating(models.Model):
     design = models.IntegerField(blank=True)
