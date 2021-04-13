@@ -44,9 +44,11 @@ def login(request):
         if user:
             log_in(request, user)
             return redirect('home')
+        else:
+            messages.info(request, "Username or Password is incorrect")
+            context.update({"messages": messages})
+            return redirect('login')
     else: 
-        # messages.info(request, "Username or Password is incorrect")
-        # context.update({"messages": messages})
         # return redirect('login')
         return render(request, 'auth/login_form.html', context)   
 
@@ -83,17 +85,18 @@ def upload_project(request):
 
     return render(request, 'html/upload.html', {'form': form})
 
-# @login_required(login_url = 'auth/')
+@login_required(login_url = 'auth/login')
 def view_profile(request):
-    cur = current_user
-    user =  User.objects.filter(id == cur.id)
-    contacts = User.objects.filter(user.id == cur.id )
+    cur = request.user
+    user =  Users.objects.first()
+    contacts = [user.contact.email,user.contact.phone,user.contact.facebook,user.contact.twitter, user.contact.linkedIn]
+    contacts = [contact for contact in contacts if contact is not None]
     user_image =user.picture
     user_name = user.name
-    projects = Project.objects.filter(user.id == cur.id).all()
-    return render(request, 'html/profile.html')
+    projects = Project.objects.filter(user_id = cur.id).all()
+    return render(request, 'html/profile.html', {"user": user, "projects":projects, "contacts":contacts})
 
-# @login_required(login_url = 'auth/')
+@login_required(login_url = 'auth/login')
 def submit_rating(request, id):
     ied = id
     state = True
@@ -133,20 +136,22 @@ def search_project(request):
 
     else:
         return redirect('home')
+
+
 def view_project(request, id):
     rated_project = Project.objects.filter(id = int(id)).first()
     state = False
     return render(request, 'html/image.html', {"project": rated_project,"button": state})
+
+@login_required(login_url = 'auth/login')
 def update_profile(request):
     if request.method == 'POST':
         update_form = UpdateForm(data = request.POST)
         contact_form = ContactForm(data = request.POST)
-        print("GGGGGGGG")
         if update_form.is_valid() and contact_form.is_valid():
+            cur = request.user
             user = update_form.save()
-            # print(user)
             contact = contact_form.save()
-            print(contact)
             # user.contact = contact
             # user.save()
             return redirect('home')
