@@ -100,7 +100,7 @@ celerybeat.pid
 
 # SageMath parsed files
 *.sage.py
-
+accounts.py
 # Environments
 virtual
 .env
@@ -129,3 +129,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#project
+.gitignore
+start.sh
