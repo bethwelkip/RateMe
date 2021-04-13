@@ -8,4 +8,26 @@
 
 {% block content %}
 
+<div class="row">
+    <div class="col-lg-10">
+        <div class="jumbotron bg-light " id="jumbotron" style="border: 100px;">
+            <div class="card mx-auto my-3" style="width: 50%;">
+                <img src="{{user.picture.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{user.name}}</h5>
+                    <p class="card-text">{{user.bio}}</p>
+                    {% for contact in contacts%}
+                    <p class="card-text">{{contact}}</p>
+                    {% endfor %}
+                </div>
+                <div class="card-footer">
+                    <p class="card-text">click <a href="{%url 'update_profile' %}">here</a> to update your profile</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
 {% endblock %}
