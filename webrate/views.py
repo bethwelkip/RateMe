@@ -8,7 +8,6 @@ from django.contrib import messages
 from django_registration.forms import RegistrationForm
 from .models import Users, Project, Rating, Contact
 from .forms import LoginForm, UploadForm, RatingForm, UpdateForm, ContactForm
-from .accounts import sample
 import cloudinary, cloudinary.api,cloudinary.uploader
 from werkzeug.security import generate_password_hash,check_password_hash
 
